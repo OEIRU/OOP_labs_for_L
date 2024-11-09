@@ -1,0 +1,1 @@
+g++ -o main empirical_distribution.cpp huber_distribution.cpp interface.cpp main.cpp mixture_distribution.cpp -I.
