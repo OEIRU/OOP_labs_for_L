@@ -21,9 +21,6 @@
     <ClCompile Include="huber_distribution.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="distribution_tests.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="empirical_distribution.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>

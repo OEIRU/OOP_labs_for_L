@@ -69,7 +69,7 @@ void runTests() {
     delete HB; // Освобождаем память
 }
 int main() {
-    setlocale(LC_ALL, "ru"); // Устанавливаем локаль для вывода на русском языке
+    setlocale(LC_ALL, "Russian");
     interface(); // Вызов функции интерфейса
     runTests();  // Запуск тестов
     return 0; // Завершение программы

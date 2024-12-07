@@ -127,7 +127,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="distribution_tests.cpp" />
     <ClCompile Include="empirical_distribution.cpp" />
     <ClCompile Include="huber_distribution.cpp" />
     <ClCompile Include="interface.cpp" />

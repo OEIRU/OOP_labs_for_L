@@ -3,6 +3,7 @@
 #include "empirical_distribution.h"
 #include "mixture_distribution.h"
 
+
 using namespace std;
 
 void file_output_distribution(int n, vector<double>& x_s, HuberDistribution* HB);
