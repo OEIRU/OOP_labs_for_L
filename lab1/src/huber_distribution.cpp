@@ -17,9 +17,49 @@ HuberDistribution* init_huber_distribution(double v, double K, double scale, dou
 
 // Функция для вычисления значения функции плотности вероятности распределения
 // x - значение, для которого вычисляется плотность вероятности
+#include <iostream>
+#include <cmath>
+#include <fstream>
+
+using namespace std;
+
+// Функция для отладки, записывающая информацию в файл
+void log_huber_debug(const string& message) {
+    ofstream log_file("huber_debug.log", ios_base::app);  // Открытие файла для добавления в конец
+    if (log_file.is_open()) {
+        log_file << message << endl;  // Запись в файл
+        log_file.close();
+    }
+}
+
+// Функция Хубера с отладочной информацией
 double Huber(double x, HuberDistribution* HB)
 {
-    return (1. / (sqrt(2. * M_PI) * HB->K) * (abs((x - HB->shift) / HB->scale) <= HB->v ? exp(-pow((x - HB->shift) / HB->scale, 2.) / 2.) : exp(pow(HB->v, 2.) / 2. - HB->v * abs((x - HB->shift) / HB->scale)))) / HB->scale;
+    // Отладка: вывод значения x и параметров распределения
+    stringstream debug_message;
+    debug_message << "распределенное x = " << x << endl;
+    debug_message << "HB->shift = " << HB->shift << ", HB->scale = " << HB->scale << ", HB->K = " << HB->K << ", HB->v = " << HB->v;
+    log_huber_debug(debug_message.str());
+
+    double abs_diff = abs((x - HB->shift) / HB->scale);  // Разность с учетом масштаба
+    stringstream debug_msg_interval;
+    
+    if (abs_diff <= HB->v) {
+        // Отладка: вывод значений внутри условия
+        debug_msg_interval << "x в пределах в = " << HB->v << ", abs_diff = " << abs_diff;
+        log_huber_debug(debug_msg_interval.str());
+        double result = exp(-pow(abs_diff, 2.) / 2.);
+        log_huber_debug("Используется нормальное распределение с результатом: " + to_string(result));
+        return result / (sqrt(2. * M_PI) * HB->K * HB->scale);  // Нормальная часть
+    } else {
+        // Отладка: вывод значений в случае, если abs_diff > v
+        debug_msg_interval.str("");  // Очищаем строковый поток
+        debug_msg_interval << "x вне предела в = " << HB->v << ", abs_diff = " << abs_diff;
+        log_huber_debug(debug_msg_interval.str());
+        double result = exp(pow(HB->v, 2.) / 2. - HB->v * abs_diff);
+        log_huber_debug("Используется экспоненциальное распределение с результатом: " + to_string(result));
+        return result / (sqrt(2. * M_PI) * HB->K * HB->scale);  // Экспоненциальная часть
+    }
 }
 
 // Функция для вычисления значения распределения стандартного нормального распределения
@@ -48,8 +88,6 @@ double huber_expected_value(HuberDistribution* HB)
 // Функция для вычисления дисперсии распределения 
 double huber_variance(HuberDistribution* HB)
 {
-    cout << HB->v <<endl;
-    cout << HB->K << endl;
 
     return 1. + 2. * phi_lower(HB->v) * (pow(HB->v, 2.) + 2.) / (pow(HB->v, 3.) * HB->K);
 }
@@ -91,37 +129,33 @@ double calculate_x(HuberDistribution* HB)
     // Инициализация генератора случайных чисел
     std::random_device rd;
     std::default_random_engine gen(rd());
-    std::uniform_real_distribution<> d(0, 1);
+    std::uniform_real_distribution<> dist(0, 1);
 
-    // Шаг 1: Генерация равномерного случайного числа r1
-    double r1 = d(gen);
-    // Проверка, попадает ли r1 в область вероятности распределения Хубера
+    // Генерация случайного числа для проверки вероятности
+    double r1 = dist(gen);
+
     if (r1 <= P(HB))
     {
-        // Шаг 2: Генерация двух случайных чисел для метода Бокса-Мюллера
-        double r2, r3, x1;
-        // Шаг 3: Генерация нормального случайного числа x1
+        // Генерация равномерного случайного числа в диапазоне [-v, v]
+        double x1;
         do {
-            r2 = d(gen);
-            r3 = d(gen);
-            // Применение метода Бокса-Мюллера для генерации нормального распределения
-            x1 = sqrt(-2 * log(r2)) * cos(2 * M_PI * r3);
-            //double x1 = sqrt(-2 * log(r2)) * sin(2 * M_PI * r3)
-        } while (!(-HB->v <= x1 && x1 <= HB->v)); 
-        // Условие для ограничения x1 в интервале [-v, v]
+            x1 = (dist(gen) * 2 - 1) * HB->v; // Преобразование к диапазону [-v, v]
+        } while (!(x1 >= -HB->v && x1 <= HB->v)); // Проверка, что x1 находится в пределах [-v, v]
 
+        // Масштабирование и сдвиг результата
         return x1 * HB->scale + HB->shift;
-        // Возвращение сгенерированного значения, масштабированного и смещенного
     }
     else
     {
-        // Шаг 4: Генерация случайного числа r4 для другой части распределения
-        double r4 = d(gen);
-        // Вычисление x2 на основе распределения
+        // Генерация случайного числа для вычисления x2
+        double r4 = dist(gen);
+
+        // Вычисление x2 для другой части распределения
         double x2 = HB->v - log(r4) / HB->v;
 
-        // Шаг 5: Возвращение значения с учетом симметрии распределения
-        return r1 < (1 + P(HB)) / 2 ? x2 * HB->scale + HB->shift : -x2 * HB->scale + HB->shift;
+        // Возврат значения с учётом симметрии распределения
+        return (r1 < (1 + P(HB)) / 2)
+            ? x2 * HB->scale + HB->shift
+            : -x2 * HB->scale + HB->shift;
     }
 }
-

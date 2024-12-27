@@ -5,10 +5,12 @@ void file_output_distribution(int n, vector<double>& x_s, HuberDistribution* HB)
 	ofstream xs;
 	ofstream fs_theoretical;
 	ofstream fs_empirical;
+	
 
 	xs.open("data/xs.txt");
 	fs_theoretical.open("data/fs_theoretical.txt");
 	fs_empirical.open("data/fs_empirical.txt");
+
 
 	sort(x_s.begin(), x_s.end());
 
@@ -18,6 +20,7 @@ void file_output_distribution(int n, vector<double>& x_s, HuberDistribution* HB)
 
 		double f_theoretical = Huber(x, HB);
 		fs_theoretical << f_theoretical << endl;
+
 
 		double f_empirical = empirical_huber(n, x, x_s);
 		fs_empirical << f_empirical << endl;
@@ -58,7 +61,7 @@ void file_output_mixture(int n, vector<double>& x_s, Mixture* M)
 
 void general_distribution()
 {
-	int n = 30000;
+	int n = 10000;
 	int distribution_params_option;
 	int file_option;
 	double v, scale, shift, x;
@@ -72,7 +75,9 @@ void general_distribution()
 	{
 		cout << "Введите v: ";
 		cin >> v;
-		HB = init_huber_distribution(v, K(v));
+		scale = 1;
+		shift = 0;
+		HB = init_huber_distribution(v, K(v), scale, shift);
 		x = 0;
 		
 	}
@@ -100,7 +105,14 @@ void general_distribution()
 	cout << "Коэффициент эксцесса: " << empirical_kurtosis(n, x_s) << endl;
 	cout << "Значение плотности в точке " << x << ": " << empirical_huber(n, x, x_s) << endl;
 
+	cout << "Переданные в функцию распределения параметры: " << endl;
+	cout << "v = " << v << endl;
+	cout << "K = " << K << endl;
+	cout << "scale = " << scale << endl;
+	cout << "shift = " << shift << endl;
+
 	cout << "Вывести данные распределения в отдельный файл? 1 - Да, 0 - Нет: ";
+
 	cin >> file_option;
 	if (file_option)
 	{
@@ -110,7 +122,7 @@ void general_distribution()
 
 void mixture_distribution()
 {
-	int n = 30000;
+	int n = 10000;
 	int file_option;
 	double v1, scale1, shift1, v2, scale2, shift2, x, p;
 	vector<double> x_s;
