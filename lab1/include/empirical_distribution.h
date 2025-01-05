@@ -1,17 +1,12 @@
-#pragma once
-#include "lib.h"
-#include "huber_distribution.h"
+#define EMPIRICAL_DISTRIBUTION_H
+
+#include <vector>
+#include <iostream>
 
 using namespace std;
 
-double empirical_expected_value(int n, vector<double> x_s);
-
-double empirical_variance(int n, vector<double> x_s);
-
-double empirical_asymmetry(int n, vector<double> x_s);
-
-double empirical_kurtosis(int n, vector<double> x_s);
-
-double empirical_huber(int n, double x, vector<double> x_s);
-
-vector<double> generate_sequence(int n, HuberDistribution* HB);
+double empirical_expected_value(int n, const vector<double>& x_s);
+double empirical_variance(int n, const vector<double>& x_s);
+double empirical_asymmetry(int n, const vector<double>& x_s);
+double empirical_kurtosis(int n, const vector<double>& x_s);
+double empirical_huber(int n, double x, const vector<double>& x_s);
