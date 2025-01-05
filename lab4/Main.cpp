@@ -1,87 +1,79 @@
-#define CATCH_CONFIG_RUNNER
-#include "catch.hpp"
+#include <iostream>
+#include <fstream>
+#include <vector>
+#include <locale>
 #include "Interface.h"
 
-void demo()
-{
-	cout << "7. Òåñò ïîçäíåãî ñâÿçûâàíèÿ:" << endl << endl;
+void demo() {
+    std::cout << "7. Ð¢ÐµÑÑ‚ Ð¿Ð¾Ð·Ð´Ð½ÐµÐ³Ð¾ ÑÐ²ÑÐ·Ñ‹Ð²Ð°Ð½Ð¸Ñ:" << std::endl << std::endl;
 
-	Primary* HB1 = new Primary(1, 1, 2);
-	Primary* HB2 = new Primary(1, 2, 6);
-	Primary* HB3 = new Primary(1, 2, -6);
-	Primary* HB4 = new Primary(1, 1, -2);
+    Primary* HB1 = new Primary(1, 1, 2);
+    Primary* HB2 = new Primary(1, 2, 6);
+    Primary* HB3 = new Primary(1, 2, -6);
+    Primary* HB4 = new Primary(1, 1, -2);
 
-	Mixture<Primary, Primary>* MX1 = new Mixture<Primary, Primary>(HB1, HB2, 0.5);
-	Mixture<Primary, Primary>* MX2 = new Mixture<Primary, Primary>(HB3, HB4, 0.5);
-	Mixture<Mixture<Primary, Primary>, Mixture<Primary, Primary>>* MX = new Mixture<Mixture<Primary, Primary>, Mixture<Primary, Primary>>(MX1, MX2, 0.5);
+    Mixture<Primary, Primary>* MX1 = new Mixture<Primary, Primary>(HB1, HB2, 0.5);
+    Mixture<Primary, Primary>* MX2 = new Mixture<Primary, Primary>(HB3, HB4, 0.5);
+    Mixture<Mixture<Primary, Primary>, Mixture<Primary, Primary>>* MX = new Mixture<Mixture<Primary, Primary>, Mixture<Primary, Primary>>(MX1, MX2, 0.5);
 
+    std::cout << "ÐŸÐ°Ñ€Ð°Ð¼ÐµÑ‚Ñ€ Ñ„Ð¾Ñ€Ð¼Ñ‹ 1: " << MX->get_component1()->get_component1()->get_v() << std::endl;
+    std::cout << "ÐŸÐ°Ñ€Ð°Ð¼ÐµÑ‚Ñ€ Ð¼Ð°ÑÑˆÑ‚Ð°Ð±Ð° 1: " << MX->get_component1()->get_component1()->get_scale() << std::endl;
+    std::cout << "ÐŸÐ°Ñ€Ð°Ð¼ÐµÑ‚Ñ€ ÑÐ´Ð²Ð¸Ð³Ð° 1: " << MX->get_component1()->get_component1()->get_shift() << std::endl << std::endl;
 
-	cout << "Ïàðàìåòð ôîðìû 1: " << MX->get_component1()->get_component1()->get_v() << endl;
-	cout << "Ïàðàìåòð ìàñøòàáà 1: " << MX->get_component1()->get_component1()->get_scale() << endl;
-	cout << "Ïàðàìåòð ñäâèãà 1: " << MX->get_component1()->get_component1()->get_shift() << endl << endl;
+    std::cout << "ÐŸÐ°Ñ€Ð°Ð¼ÐµÑ‚Ñ€ Ñ„Ð¾Ñ€Ð¼Ñ‹ 2: " << MX->get_component1()->get_component2()->get_v() << std::endl;
+    std::cout << "ÐŸÐ°Ñ€Ð°Ð¼ÐµÑ‚Ñ€ Ð¼Ð°ÑÑˆÑ‚Ð°Ð±Ð° 2: " << MX->get_component1()->get_component2()->get_scale() << std::endl;
+    std::cout << "ÐŸÐ°Ñ€Ð°Ð¼ÐµÑ‚Ñ€ ÑÐ´Ð²Ð¸Ð³Ð° 2: " << MX->get_component1()->get_component2()->get_shift() << std::endl << std::endl;
 
-	cout << "Ïàðàìåòð ôîðìû 2: " << MX->get_component1()->get_component2()->get_v() << endl;
-	cout << "Ïàðàìåòð ìàñøòàáà 2: " << MX->get_component1()->get_component2()->get_scale() << endl;
-	cout << "Ïàðàìåòð ñäâèãà 2: " << MX->get_component1()->get_component2()->get_shift() << endl << endl;
+    std::cout << "ÐŸÐ°Ñ€Ð°Ð¼ÐµÑ‚Ñ€ Ñ„Ð¾Ñ€Ð¼Ñ‹ 3: " << MX->get_component2()->get_component1()->get_v() << std::endl;
+    std::cout << "ÐŸÐ°Ñ€Ð°Ð¼ÐµÑ‚Ñ€ Ð¼Ð°ÑÑˆÑ‚Ð°Ð±Ð° 3: " << MX->get_component2()->get_component1()->get_scale() << std::endl;
+    std::cout << "ÐŸÐ°Ñ€Ð°Ð¼ÐµÑ‚Ñ€ ÑÐ´Ð²Ð¸Ð³Ð° 3: " << MX->get_component2()->get_component1()->get_shift() << std::endl << std::endl;
 
-	cout << "Ïàðàìåòð ôîðìû 3: " << MX->get_component2()->get_component1()->get_v() << endl;
-	cout << "Ïàðàìåòð ìàñøòàáà 3: " << MX->get_component2()->get_component1()->get_scale() << endl;
-	cout << "Ïàðàìåòð ñäâèãà 3: " << MX->get_component2()->get_component1()->get_shift() << endl << endl;
+    std::cout << "ÐŸÐ°Ñ€Ð°Ð¼ÐµÑ‚Ñ€ Ñ„Ð¾Ñ€Ð¼Ñ‹ 4: " << MX->get_component2()->get_component2()->get_v() << std::endl;
+    std::cout << "ÐŸÐ°Ñ€Ð°Ð¼ÐµÑ‚Ñ€ Ð¼Ð°ÑÑˆÑ‚Ð°Ð±Ð° 4: " << MX->get_component2()->get_component2()->get_scale() << std::endl;
+    std::cout << "ÐŸÐ°Ñ€Ð°Ð¼ÐµÑ‚Ñ€ ÑÐ´Ð²Ð¸Ð³Ð° 4: " << MX->get_component2()->get_component2()->get_shift() << std::endl << std::endl;
 
-	cout << "Ïàðàìåòð ôîðìû 4: " << MX->get_component2()->get_component2()->get_v() << endl;
-	cout << "Ïàðàìåòð ìàñøòàáà 4: " << MX->get_component2()->get_component2()->get_scale() << endl;
-	cout << "Ïàðàìåòð ñäâèãà 4: " << MX->get_component2()->get_component2()->get_shift() << endl << endl;
+    std::cout << "Ð¢ÐµÐ¾Ñ€ÐµÑ‚Ð¸Ñ‡ÐµÑÐºÐ¸Ðµ Ñ…Ð°Ñ€Ð°ÐºÑ‚ÐµÑ€Ð¸ÑÑ‚Ð¸ÐºÐ¸:" << std::endl;
+    std::cout << "ÐœÐ°Ñ‚ÐµÐ¼Ð°Ñ‚Ð¸Ñ‡ÐµÑÐºÐ¾Ðµ Ð¾Ð¶Ð¸Ð´Ð°Ð½Ð¸Ðµ: " << MX->expected_value() << std::endl;
+    std::cout << "Ð”Ð¸ÑÐ¿ÐµÑ€ÑÐ¸Ñ: " << MX->variance() << std::endl;
+    std::cout << "ÐšÐ¾ÑÑ„Ñ„Ð¸Ñ†Ð¸ÐµÐ½Ñ‚ Ð°ÑÐ¸Ð¼Ð¼ÐµÑ‚Ñ€Ð¸Ð¸: " << MX->asymmetry() << std::endl;
+    std::cout << "ÐšÐ¾ÑÑ„Ñ„Ð¸Ñ†Ð¸ÐµÐ½Ñ‚ ÑÐºÑÑ†ÐµÑÑÐ°: " << MX->kurtosis() << std::endl << std::endl;
 
-	cout << "Òåîðåòè÷åñêèå õàðàêòåðèñòèêè:" << endl;
-	cout << "Ìàòåìàòè÷åñêîå îæèäàíèå: " << MX->expected_value() << endl;
-	cout << "Äèñïåðñèÿ: " << MX->variance() << endl;
-	cout << "Êîýôôèèöåíò àñèììåòðèè: " << MX->asymmetry() << endl;
-	cout << "Êîýôôèöèåíò ýêñöåññà: " << MX->kurtosis() << endl << endl;
+    Empirical* EM1 = new Empirical(MX, 10000, 0);
+    Empirical* EM2 = new Empirical(MX, 10000, 0);
 
-	Empirical* EM1 = new Empirical(MX, 10000, 0);
-	Empirical* EM2 = new Empirical(MX, 10000, 0);
+    std::cout << "Ð­Ð¼Ð¿Ð¸Ñ€Ð¸Ñ‡ÐµÑÐºÐ¸Ðµ Ñ…Ð°Ñ€Ð°ÐºÑ‚ÐµÑ€Ð¸ÑÑ‚Ð¸ÐºÐ¸:" << std::endl;
+    std::cout << "ÐœÐ°Ñ‚ÐµÐ¼Ð°Ñ‚Ð¸Ñ‡ÐµÑÐºÐ¾Ðµ Ð¾Ð¶Ð¸Ð´Ð°Ð½Ð¸Ðµ: " << MX->expected_value() << std::endl;
+    std::cout << "Ð”Ð¸ÑÐ¿ÐµÑ€ÑÐ¸Ñ: " << MX->variance() << std::endl;
+    std::cout << "ÐšÐ¾ÑÑ„Ñ„Ð¸Ñ†Ð¸ÐµÐ½Ñ‚ Ð°ÑÐ¸Ð¼Ð¼ÐµÑ‚Ñ€Ð¸Ð¸: " << MX->asymmetry() << std::endl;
+    std::cout << "ÐšÐ¾ÑÑ„Ñ„Ð¸Ñ†Ð¸ÐµÐ½Ñ‚ ÑÐºÑÑ†ÐµÑÑÐ°: " << MX->kurtosis() << std::endl << std::endl;
 
-	cout << "Ýìïèðè÷åñêèå õàðàêòåðèñòèêè:" << endl;
-	cout << "Ìàòåìàòè÷åñêîå îæèäàíèå: " << MX->expected_value() << endl;
-	cout << "Äèñïåðñèÿ: " << MX->variance() << endl;
-	cout << "Êîýôôèöèåíò àñèììåòðèè: " << MX->asymmetry() << endl;
-	cout << "Êîýôôèöèåíò ýêñöåññà: " << MX->kurtosis() << endl << endl;
+    std::vector<std::pair<double, double>> s1 = MX->generate_table_of_values(10000, MX->generate_sequence(10000));
+    std::vector<std::pair<double, double>> s2 = EM1->generate_table_of_values(10000, EM1->generate_sequence(10000));
+    std::vector<std::pair<double, double>> s3 = EM2->generate_table_of_values(10000, EM2->generate_sequence(10000));
 
+    std::ofstream file1("theoretical.txt");
+    std::ofstream file2("empirical.txt");
+    std::ofstream file3("empirical2.txt");
 
-	vector<pair<double, double>> s1 = MX->generate_table_of_values(10000, MX->generate_sequence(10000));
-	vector<pair<double, double>> s2 = EM1->generate_table_of_values(10000, EM1->generate_sequence(10000));
-	vector<pair<double, double>> s3 = EM2->generate_table_of_values(10000, EM2->generate_sequence(10000));
+    for (auto& s : s1)
+        file1 << s.second << std::endl;
+    for (auto& s : s2)
+        file2 << s.second << std::endl;
+    for (auto& s : s3)
+        file3 << s.second << std::endl;
 
-	ofstream file1;
-	ofstream file2;
-	ofstream file3;
-
-	file1.open("theoretical.txt");
-	file2.open("empirical.txt");
-	file3.open("empirical2.txt");
-
-	for (auto& s : s1)
-		file1 << s.second << endl;
-	for (auto& s : s2)
-		file2 << s.second << endl;
-	for (auto& s : s3)
-		file3 << s.second << endl;
-
-	file1.close();
-	file2.close();
-	file3.close();
+    file1.close();
+    file2.close();
+    file3.close();
 }
 
-int main(int argc, char** argv)
-{
-	setlocale(LC_ALL, "ru");
+int main(int argc, char** argv) {
+    std::setlocale(LC_ALL, "ru");
 
-	//demo();
+    // Ð Ð°ÑÐºÐ¾Ð¼Ð¼ÐµÐ½Ñ‚Ð¸Ñ€ÑƒÐ¹Ñ‚Ðµ Ð´Ð»Ñ Ð·Ð°Ð¿ÑƒÑÐºÐ° Ð´ÐµÐ¼Ð¾-Ñ„ÑƒÐ½ÐºÑ†Ð¸Ð¸
+    // demo();
 
-	start();
+    start();
 
-	//int result = Catch::Session().run(argc, argv);
-	//return result;
-
-	return 0;
+    return 0;
 }

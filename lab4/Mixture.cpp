@@ -67,7 +67,7 @@ template <class Distribution1, class Distribution2>
 void Mixture<Distribution1, Distribution2>::set_p(const double p)
 {
 	if (p < 0 || p > 1)
-		throw invalid_argument("Çíà÷åíèå ïàðàìåòðà íåêîððåêòíî");
+		throw invalid_argument("Ð—Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ð° Ð½ÐµÐºÐ¾Ñ€Ñ€ÐµÐºÑ‚Ð½Ð¾");
 	this->p = p;
 }
 
@@ -79,12 +79,12 @@ void Mixture<Distribution1, Distribution2>::load_from_file(ifstream& file)
 	ifstream file1;
 	ifstream file2;
 
-	cout << "Ââåäèòå èìÿ ôàéëà ñ ïàðàìåòðîì ñìåñè ðàñïðåäåëåíèé: ";
+	cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð¸Ð¼Ñ Ñ„Ð°Ð¹Ð»Ð° Ñ Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ð¾Ð¼ ÑÐ¼ÐµÑÐ¸ Ñ€Ð°ÑÐ¿Ñ€ÐµÐ´ÐµÐ»ÐµÐ½Ð¸Ð¹: ";
 	cin >> filename;
 
 	file.open(filename);
 	if (!file)
-		throw runtime_error("Îøèáêà: íå óäàëîñü îòêðûòü ôàéë");
+		throw runtime_error("ÐžÑˆÐ¸Ð±ÐºÐ°: Ð½Ðµ ÑƒÐ´Ð°Ð»Ð¾ÑÑŒ Ð¾Ñ‚ÐºÑ€Ñ‹Ñ‚ÑŒ Ñ„Ð°Ð¹Ð»");
 
 	file >> p;
 	get_component1()->load_from_file(file1);
@@ -106,7 +106,7 @@ void Mixture<Distribution1, Distribution2>::save_to_file(ofstream& file)
 
 	file.close();
 
-	cout << "Ïàðàìåòð ñìåñè ñîõðàíåí â ôàéë mixture_params.txt" << endl;
+	cout << "ÐŸÐ°Ñ€Ð°Ð¼ÐµÑ‚Ñ€ ÑÐ¼ÐµÑÐ¸ ÑÐ¾Ñ…Ñ€Ð°Ð½ÐµÐ½ Ð² Ñ„Ð°Ð¹Ð» mixture_params.txt" << endl;
 
 }
 

@@ -10,12 +10,12 @@ void step3_primary(Primary* HB)
 	int n;
 	double x = 0;
 
-	cout << "×òî äåëàåì äàëüøå?" << endl;
-	cout << "1. Âûâåñòè ïàðàìåòðû ðàñïðåäåëåíèÿ íà ýêðàí" << endl;
-	cout << "2. Âû÷èñëèòü çíà÷åíèå ïëîòíîñòè ðàñïðåäåëåíèÿ â ïðîèçâîëüíîé òî÷êå" << endl;
-	cout << "3. Ïîëó÷èòü âûáîðêó äëÿ àíàëèçà" << endl;
-	cout << "4. Âûâåñòè ïàðàìåòðû ðàñïðåäåëåíèÿ â ôàéë" << endl;
-	cout << "5. Íàçàä" << endl << endl;
+	cout << "Ð§Ñ‚Ð¾ Ð´ÐµÐ»Ð°ÐµÐ¼ Ð´Ð°Ð»ÑŒÑˆÐµ?" << endl;
+	cout << "1. Ð’Ñ‹Ð²ÐµÑÑ‚Ð¸ Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ñ‹ Ñ€Ð°ÑÐ¿Ñ€ÐµÐ´ÐµÐ»ÐµÐ½Ð¸Ñ Ð½Ð° ÑÐºÑ€Ð°Ð½" << endl;
+	cout << "2. Ð’Ñ‹Ñ‡Ð¸ÑÐ»Ð¸Ñ‚ÑŒ Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ Ð¿Ð»Ð¾Ñ‚Ð½Ð¾ÑÑ‚Ð¸ Ñ€Ð°ÑÐ¿Ñ€ÐµÐ´ÐµÐ»ÐµÐ½Ð¸Ñ Ð² Ð¿Ñ€Ð¾Ð¸Ð·Ð²Ð¾Ð»ÑŒÐ½Ð¾Ð¹ Ñ‚Ð¾Ñ‡ÐºÐµ" << endl;
+	cout << "3. ÐŸÐ¾Ð»ÑƒÑ‡Ð¸Ñ‚ÑŒ Ð²Ñ‹Ð±Ð¾Ñ€ÐºÑƒ Ð´Ð»Ñ Ð°Ð½Ð°Ð»Ð¸Ð·Ð°" << endl;
+	cout << "4. Ð’Ñ‹Ð²ÐµÑÑ‚Ð¸ Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ñ‹ Ñ€Ð°ÑÐ¿Ñ€ÐµÐ´ÐµÐ»ÐµÐ½Ð¸Ñ Ð² Ñ„Ð°Ð¹Ð»" << endl;
+	cout << "5. ÐÐ°Ð·Ð°Ð´" << endl << endl;
 
 
 	cin >> option;
@@ -38,7 +38,7 @@ void step3_primary(Primary* HB)
 		break;
 
 	case '2':
-		cout << "Ââåäèòå x: ";
+		cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ x: ";
 		cin >> x;
 		cout << endl << "f(" << x << ") = " << HB->f(x) << endl << endl;
 		break;
@@ -46,7 +46,7 @@ void step3_primary(Primary* HB)
 	case '3':
 		x_s.open("x_s.txt");
 		y_s.open("y_s.txt");
-		cout << "Ââåäèòå ðàçìåðíîñòü âûáîðêè n: ";
+		cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ñ€Ð°Ð·Ð¼ÐµÑ€Ð½Ð¾ÑÑ‚ÑŒ Ð²Ñ‹Ð±Ð¾Ñ€ÐºÐ¸ n: ";
 		cin >> n;
 		table = HB->generate_table_of_values(n);
 		for (const pair<double, double>& pr : table)
@@ -58,7 +58,7 @@ void step3_primary(Primary* HB)
 		x_s.close();
 		x_s.close();
 
-		cout << endl << "Çíà÷åíèÿ âûáîðêè çàïèñàíû â ôàéëû x_s.txt è y_s.txt" << endl << endl;
+		cout << endl << "Ð—Ð½Ð°Ñ‡ÐµÐ½Ð¸Ñ Ð²Ñ‹Ð±Ð¾Ñ€ÐºÐ¸ Ð·Ð°Ð¿Ð¸ÑÐ°Ð½Ñ‹ Ð² Ñ„Ð°Ð¹Ð»Ñ‹ x_s.txt Ð¸ y_s.txt" << endl << endl;
 		break;
 
 	case '4':
@@ -71,7 +71,7 @@ void step3_primary(Primary* HB)
 		break;
 
 	default:
-		cerr << endl << "Îøèáêà: Íåêîððåêòíûé ïàðàìåòð" << endl << endl;
+		cerr << endl << "ÐžÑˆÐ¸Ð±ÐºÐ°: ÐÐµÐºÐ¾Ñ€Ñ€ÐµÐºÑ‚Ð½Ñ‹Ð¹ Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€" << endl << endl;
 		break;
 	}
 }
@@ -86,12 +86,12 @@ void step3_mixture(Mixture* MX)
 	int n;
 	double x = 0;
 
-	cout << "Âûáåðèòå îïöèþ:" << endl;
-	cout << "1. Âûâåñòè ïàðàìåòðû ñìåñè ðàñïðåäåëåíèé íà ýêðàí" << endl;
-	cout << "2. Âû÷èñëèòü çíà÷åíèå ïëîòíîñòè ñìåñè ðàñïðåäåëåíèé â ïðîèçâîëüíîé òî÷êå" << endl;
-	cout << "3. Ïîëó÷èòü âûáîðêó äëÿ àíàëèçà" << endl;
-	cout << "4. Âûâåñòè ïàðàìåòðû ñìåñè ðàñïðåäåëåíèé â ôàéë" << endl;
-	cout << "5. Íàçàä" << endl << endl;
+	cout << "Ð’Ñ‹Ð±ÐµÑ€Ð¸Ñ‚Ðµ Ð¾Ð¿Ñ†Ð¸ÑŽ:" << endl;
+	cout << "1. Ð’Ñ‹Ð²ÐµÑÑ‚Ð¸ Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ñ‹ ÑÐ¼ÐµÑÐ¸ Ñ€Ð°ÑÐ¿Ñ€ÐµÐ´ÐµÐ»ÐµÐ½Ð¸Ð¹ Ð½Ð° ÑÐºÑ€Ð°Ð½" << endl;
+	cout << "2. Ð’Ñ‹Ñ‡Ð¸ÑÐ»Ð¸Ñ‚ÑŒ Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ Ð¿Ð»Ð¾Ñ‚Ð½Ð¾ÑÑ‚Ð¸ ÑÐ¼ÐµÑÐ¸ Ñ€Ð°ÑÐ¿Ñ€ÐµÐ´ÐµÐ»ÐµÐ½Ð¸Ð¹ Ð² Ð¿Ñ€Ð¾Ð¸Ð·Ð²Ð¾Ð»ÑŒÐ½Ð¾Ð¹ Ñ‚Ð¾Ñ‡ÐºÐµ" << endl;
+	cout << "3. ÐŸÐ¾Ð»ÑƒÑ‡Ð¸Ñ‚ÑŒ Ð²Ñ‹Ð±Ð¾Ñ€ÐºÑƒ Ð´Ð»Ñ Ð°Ð½Ð°Ð»Ð¸Ð·Ð°" << endl;
+	cout << "4. Ð’Ñ‹Ð²ÐµÑÑ‚Ð¸ Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ñ‹ ÑÐ¼ÐµÑÐ¸ Ñ€Ð°ÑÐ¿Ñ€ÐµÐ´ÐµÐ»ÐµÐ½Ð¸Ð¹ Ð² Ñ„Ð°Ð¹Ð»" << endl;
+	cout << "5. ÐÐ°Ð·Ð°Ð´" << endl << endl;
 
 	cin >> option;
 	cout << endl;
@@ -117,7 +117,7 @@ void step3_mixture(Mixture* MX)
 		break;
 
 	case '2':
-		cout << "Ââåäèòå x: ";
+		cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ x: ";
 		cin >> x;
 		cout << endl << "f(" << x << ") = " << MX->f(x) << endl << endl;
 		break;
@@ -125,7 +125,7 @@ void step3_mixture(Mixture* MX)
 	case '3':
 		x_s.open("x_s.txt");
 		y_s.open("y_s.txt");
-		cout << "Ââåäèòå ðàçìåðíîñòü âûáîðêè n: ";
+		cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ñ€Ð°Ð·Ð¼ÐµÑ€Ð½Ð¾ÑÑ‚ÑŒ Ð²Ñ‹Ð±Ð¾Ñ€ÐºÐ¸ n: ";
 		cin >> n;
 		table = MX->generate_table_of_values(n);
 		for (const pair<double, double>& pr : table)
@@ -137,7 +137,7 @@ void step3_mixture(Mixture* MX)
 		x_s.close();
 		x_s.close();
 
-		cout << endl << "Çíà÷åíèÿ âûáîðêè çàïèñàíû â ôàéëû x_s.txt è y_s.txt" << endl << endl;
+		cout << endl << "Ð—Ð½Ð°Ñ‡ÐµÐ½Ð¸Ñ Ð²Ñ‹Ð±Ð¾Ñ€ÐºÐ¸ Ð·Ð°Ð¿Ð¸ÑÐ°Ð½Ñ‹ Ð² Ñ„Ð°Ð¹Ð»Ñ‹ x_s.txt Ð¸ y_s.txt" << endl << endl;
 		break;
 
 	case '4':
@@ -150,7 +150,7 @@ void step3_mixture(Mixture* MX)
 		break;
 
 	default:
-		cerr << endl << "Îøèáêà: Íåêîððåêòíûé ïàðàìåòð" << endl << endl << endl;
+		cerr << endl << "ÐžÑˆÐ¸Ð±ÐºÐ°: ÐÐµÐºÐ¾Ñ€Ñ€ÐµÐºÑ‚Ð½Ñ‹Ð¹ Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€" << endl << endl << endl;
 		break;
 	}
 
@@ -162,11 +162,11 @@ void step3_empirical(Empirical* EM)
 	char option;
 	double x = 0;
 
-	cout << "Âûáåðèòå îïöèþ:" << endl;
-	cout << "1. Âûâåñòè ïàðàìåòðû ýìïèðè÷åñêîãî ðàñïðåäåëåíèÿ íà ýêðàí" << endl;
-	cout << "2. Âû÷èñëèòü çíà÷åíèå ïëîòíîñòè ñìåñè ðàñïðåäåëåíèé â ïðîèçâîëüíîé òî÷êå" << endl;
-	cout << "3. Âûâåñòè âûáîðêó ýëåìåíòîâ è ïàðàìåòðû ýìïèðè÷åñêîãî ðàñïðåäåëåíèÿ â ôàéë" << endl;
-	cout << "4. Íàçàä" << endl << endl;
+	cout << "Ð’Ñ‹Ð±ÐµÑ€Ð¸Ñ‚Ðµ Ð¾Ð¿Ñ†Ð¸ÑŽ:" << endl;
+	cout << "1. Ð’Ñ‹Ð²ÐµÑÑ‚Ð¸ Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ñ‹ ÑÐ¼Ð¿Ð¸Ñ€Ð¸Ñ‡ÐµÑÐºÐ¾Ð³Ð¾ Ñ€Ð°ÑÐ¿Ñ€ÐµÐ´ÐµÐ»ÐµÐ½Ð¸Ñ Ð½Ð° ÑÐºÑ€Ð°Ð½" << endl;
+	cout << "2. Ð’Ñ‹Ñ‡Ð¸ÑÐ»Ð¸Ñ‚ÑŒ Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ Ð¿Ð»Ð¾Ñ‚Ð½Ð¾ÑÑ‚Ð¸ ÑÐ¼ÐµÑÐ¸ Ñ€Ð°ÑÐ¿Ñ€ÐµÐ´ÐµÐ»ÐµÐ½Ð¸Ð¹ Ð² Ð¿Ñ€Ð¾Ð¸Ð·Ð²Ð¾Ð»ÑŒÐ½Ð¾Ð¹ Ñ‚Ð¾Ñ‡ÐºÐµ" << endl;
+	cout << "3. Ð’Ñ‹Ð²ÐµÑÑ‚Ð¸ Ð²Ñ‹Ð±Ð¾Ñ€ÐºÑƒ ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚Ð¾Ð² Ð¸ Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ñ‹ ÑÐ¼Ð¿Ð¸Ñ€Ð¸Ñ‡ÐµÑÐºÐ¾Ð³Ð¾ Ñ€Ð°ÑÐ¿Ñ€ÐµÐ´ÐµÐ»ÐµÐ½Ð¸Ñ Ð² Ñ„Ð°Ð¹Ð»" << endl;
+	cout << "4. ÐÐ°Ð·Ð°Ð´" << endl << endl;
 
 	cin >> option;
 	cout << endl;
@@ -185,7 +185,7 @@ void step3_empirical(Empirical* EM)
 		break;
 
 	case '2':
-		cout << "Ââåäèòå x: ";
+		cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ x: ";
 		cin >> x;
 		cout << endl << "f(" << x << ") = " << EM->f(x) << endl << endl;
 		break;
@@ -200,7 +200,7 @@ void step3_empirical(Empirical* EM)
 		break;
 
 	default:
-		cerr << endl << "Îøèáêà: Íåêîððåêòíûé ïàðàìåòð" << endl << endl;
+		cerr << endl << "ÐžÑˆÐ¸Ð±ÐºÐ°: ÐÐµÐºÐ¾Ñ€Ñ€ÐµÐºÑ‚Ð½Ñ‹Ð¹ Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€" << endl << endl;
 		break;
 	}
 }
@@ -212,11 +212,11 @@ void step2_primary()
 	Primary* HB;
 	ifstream file;
 
-	cout << "Âûáåðèòå îïöèþ: " << endl;
-	cout << "1. Ñòàíäàðòíîå ðàñïðåäåëåíèå Õüþáåðà" << endl;
-	cout << "2. Ââåñòè ïðîèçâîëüíûå ïàðàìåòðû ñ êëàâèàòóðû" << endl;
-	cout << "3. Ñ÷èòàòü ïàðàìåòðû èç ôàéëà" << endl;
-	cout << "4. Íàçàä" << endl << endl;
+	cout << "Ð’Ñ‹Ð±ÐµÑ€Ð¸Ñ‚Ðµ Ð¾Ð¿Ñ†Ð¸ÑŽ: " << endl;
+	cout << "1. Ð¡Ñ‚Ð°Ð½Ð´Ð°Ñ€Ñ‚Ð½Ð¾Ðµ Ñ€Ð°ÑÐ¿Ñ€ÐµÐ´ÐµÐ»ÐµÐ½Ð¸Ðµ Ð¥ÑŒÑŽÐ±ÐµÑ€Ð°" << endl;
+	cout << "2. Ð’Ð²ÐµÑÑ‚Ð¸ Ð¿Ñ€Ð¾Ð¸Ð·Ð²Ð¾Ð»ÑŒÐ½Ñ‹Ðµ Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ñ‹ Ñ ÐºÐ»Ð°Ð²Ð¸Ð°Ñ‚ÑƒÑ€Ñ‹" << endl;
+	cout << "3. Ð¡Ñ‡Ð¸Ñ‚Ð°Ñ‚ÑŒ Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ñ‹ Ð¸Ð· Ñ„Ð°Ð¹Ð»Ð°" << endl;
+	cout << "4. ÐÐ°Ð·Ð°Ð´" << endl << endl;
 
 	cin >> option;
 	cout << endl;
@@ -224,7 +224,7 @@ void step2_primary()
 	switch (option)
 	{
 	case '1':
-		cout << "Ââåäèòå ïàðàìåòð v: ";
+		cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€ v: ";
 		cin >> v;
 		cout << endl << endl;
 		try
@@ -241,7 +241,7 @@ void step2_primary()
 		break;
 
 	case '2':
-		cout << "Ââåäèòå v scale shift: ";
+		cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ v scale shift: ";
 		cin >> v >> scale >> shift;
 		cout << endl << endl;
 		try
@@ -275,7 +275,7 @@ void step2_primary()
 		break;
 
 	default:
-		cerr << endl << "Îøèáêà: Íåêîððåêòíûé ïàðàìåòð" << endl << endl;
+		cerr << endl << "ÐžÑˆÐ¸Ð±ÐºÐ°: ÐÐµÐºÐ¾Ñ€Ñ€ÐµÐºÑ‚Ð½Ñ‹Ð¹ Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€" << endl << endl;
 		break;
 	}
 }
@@ -289,11 +289,11 @@ void step2_mixture()
 	Primary* HB2;
 	ifstream file;
 
-	cout << "Âûáåðèòå îïöèþ: " << endl;
-	cout << "1. Ñòàíäàðòíûå ïàðàìåòðû ñìåñè ðàñïðåäåëåíèé" << endl;
-	cout << "2. Ââîä ñ êëàâèàòóðû" << endl;
-	cout << "3. Ââîä èç ôàéëà" << endl;
-	cout << "4. Íàçàä" << endl << endl;
+	cout << "Ð’Ñ‹Ð±ÐµÑ€Ð¸Ñ‚Ðµ Ð¾Ð¿Ñ†Ð¸ÑŽ: " << endl;
+	cout << "1. Ð¡Ñ‚Ð°Ð½Ð´Ð°Ñ€Ñ‚Ð½Ñ‹Ðµ Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ñ‹ ÑÐ¼ÐµÑÐ¸ Ñ€Ð°ÑÐ¿Ñ€ÐµÐ´ÐµÐ»ÐµÐ½Ð¸Ð¹" << endl;
+	cout << "2. Ð’Ð²Ð¾Ð´ Ñ ÐºÐ»Ð°Ð²Ð¸Ð°Ñ‚ÑƒÑ€Ñ‹" << endl;
+	cout << "3. Ð’Ð²Ð¾Ð´ Ð¸Ð· Ñ„Ð°Ð¹Ð»Ð°" << endl;
+	cout << "4. ÐÐ°Ð·Ð°Ð´" << endl << endl;
 
 	cin >> option;
 	cout << endl << endl;
@@ -306,7 +306,7 @@ void step2_mixture()
 		break;
 
 	case '2':
-		cout << "Ââåäèòå p (v1 scale1 shift1) (v2 scale2 shift2) (÷åðåç ïðîáåë èëè ÷åðåç Enter): ";
+		cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ p (v1 scale1 shift1) (v2 scale2 shift2) (Ñ‡ÐµÑ€ÐµÐ· Ð¿Ñ€Ð¾Ð±ÐµÐ» Ð¸Ð»Ð¸ Ñ‡ÐµÑ€ÐµÐ· Enter): ";
 		cin >> p >> v1 >> scale1 >> shift1 >> v2 >> scale2 >> shift2;
 		try
 		{
@@ -339,7 +339,7 @@ void step2_mixture()
 		break;
 
 	default:
-		cerr << endl << "Îøèáêà: Íåêîððåêòíûé ïàðàìåòð" << endl << endl;
+		cerr << endl << "ÐžÑˆÐ¸Ð±ÐºÐ°: ÐÐµÐºÐ¾Ñ€Ñ€ÐµÐºÑ‚Ð½Ñ‹Ð¹ Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€" << endl << endl;
 		break;
 	}
 }
@@ -353,11 +353,11 @@ void step2_empirical_from_primary()
 	Primary* HB;
 	ifstream file;
 
-	cout << "Âûáåðèòå îïöèþ: " << endl;
-	cout << "1. Ñòàíäàðòíîå ðàñïðåäåëåíèå Õüþáåðà" << endl;
-	cout << "2. Ââåñòè ïðîèçâîëüíûå ïàðàìåòðû ñ êëàâèàòóðû" << endl;
-	cout << "3. Ñ÷èòàòü ïàðàìåòðû èç ôàéëà" << endl;
-	cout << "4. Íàçàä" << endl << endl;
+	cout << "Ð’Ñ‹Ð±ÐµÑ€Ð¸Ñ‚Ðµ Ð¾Ð¿Ñ†Ð¸ÑŽ: " << endl;
+	cout << "1. Ð¡Ñ‚Ð°Ð½Ð´Ð°Ñ€Ñ‚Ð½Ð¾Ðµ Ñ€Ð°ÑÐ¿Ñ€ÐµÐ´ÐµÐ»ÐµÐ½Ð¸Ðµ Ð¥ÑŒÑŽÐ±ÐµÑ€Ð°" << endl;
+	cout << "2. Ð’Ð²ÐµÑÑ‚Ð¸ Ð¿Ñ€Ð¾Ð¸Ð·Ð²Ð¾Ð»ÑŒÐ½Ñ‹Ðµ Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ñ‹ Ñ ÐºÐ»Ð°Ð²Ð¸Ð°Ñ‚ÑƒÑ€Ñ‹" << endl;
+	cout << "3. Ð¡Ñ‡Ð¸Ñ‚Ð°Ñ‚ÑŒ Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ñ‹ Ð¸Ð· Ñ„Ð°Ð¹Ð»Ð°" << endl;
+	cout << "4. ÐÐ°Ð·Ð°Ð´" << endl << endl;
 
 	cin >> option;
 	cout << endl << endl;
@@ -365,7 +365,7 @@ void step2_empirical_from_primary()
 	switch (option)
 	{
 	case '1':
-		cout << "Ââåäèòå ïàðàìåòð v: ";
+		cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€ v: ";
 		cin >> v;
 		cout << endl << endl;
 		try
@@ -377,9 +377,9 @@ void step2_empirical_from_primary()
 			cerr << e.what() << endl << endl;
 			break;
 		}
-		cout << "Ââåäèòå n: ";
+		cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ n: ";
 		cin >> n;
-		cout << "Ââåäèòå k (0, åñëè õîòèòå ðàññ÷èòàòü k ïî ôîðìóëå Ñòåðäæåññà): ";
+		cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ k (0, ÐµÑÐ»Ð¸ Ñ…Ð¾Ñ‚Ð¸Ñ‚Ðµ Ñ€Ð°ÑÑÑ‡Ð¸Ñ‚Ð°Ñ‚ÑŒ k Ð¿Ð¾ Ñ„Ð¾Ñ€Ð¼ÑƒÐ»Ðµ Ð¡Ñ‚ÐµÑ€Ð´Ð¶ÐµÑÑÐ°): ";
 		cin >> k;
 		cout << endl << endl;
 
@@ -389,7 +389,7 @@ void step2_empirical_from_primary()
 		break;
 
 	case '2':
-		cout << "Ââåäèòå v scale shift: ";
+		cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ v scale shift: ";
 		cin >> v >> scale >> shift;
 		cout << endl << endl;
 		try
@@ -401,9 +401,9 @@ void step2_empirical_from_primary()
 			cerr << e.what() << endl << endl;
 			break;
 		}
-		cout << "Ââåäèòå n: ";
+		cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ n: ";
 		cin >> n;
-		cout << "Ââåäèòå k (0, åñëè õîòèòå ðàññ÷èòàòü k ïî ôîðìóëå Ñòåðäæåññà): ";
+		cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ k (0, ÐµÑÐ»Ð¸ Ñ…Ð¾Ñ‚Ð¸Ñ‚Ðµ Ñ€Ð°ÑÑÑ‡Ð¸Ñ‚Ð°Ñ‚ÑŒ k Ð¿Ð¾ Ñ„Ð¾Ñ€Ð¼ÑƒÐ»Ðµ Ð¡Ñ‚ÐµÑ€Ð´Ð¶ÐµÑÑÐ°): ";
 		cin >> k;
 		cout << endl << endl;
 		EM = new Empirical(HB, n, k);
@@ -422,9 +422,9 @@ void step2_empirical_from_primary()
 			break;
 		}
 
-		cout << "Ââåäèòå n: ";
+		cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ n: ";
 		cin >> n;
-		cout << "Ââåäèòå k (0, åñëè õîòèòå ðàññ÷èòàòü k ïî ôîðìóëå Ñòåðäæåññà): ";
+		cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ k (0, ÐµÑÐ»Ð¸ Ñ…Ð¾Ñ‚Ð¸Ñ‚Ðµ Ñ€Ð°ÑÑÑ‡Ð¸Ñ‚Ð°Ñ‚ÑŒ k Ð¿Ð¾ Ñ„Ð¾Ñ€Ð¼ÑƒÐ»Ðµ Ð¡Ñ‚ÐµÑ€Ð´Ð¶ÐµÑÑÐ°): ";
 		cin >> k;
 
 		EM = new Empirical(HB, n, k);
@@ -436,7 +436,7 @@ void step2_empirical_from_primary()
 		break;
 
 	default:
-		cerr << endl << "Îøèáêà: Íåêîððåêòíûé ïàðàìåòð" << endl << endl;
+		cerr << endl << "ÐžÑˆÐ¸Ð±ÐºÐ°: ÐÐµÐºÐ¾Ñ€Ñ€ÐµÐºÑ‚Ð½Ñ‹Ð¹ Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€" << endl << endl;
 		break;
 	}
 }
@@ -452,11 +452,11 @@ void step2_empirical_from_mixture()
 	Primary* HB2;
 	ifstream file;
 
-	cout << "Âûáåðèòå îïöèþ: " << endl;
-	cout << "1. Ñòàíäàðòíûå ïàðàìåòðû ñìåñè ðàñïðåäåëåíèé" << endl;
-	cout << "2. Ââîä ñ êëàâèàòóðû" << endl;
-	cout << "3. Ââîä èç ôàéëà" << endl;
-	cout << "4. Íàçàä" << endl << endl;
+	cout << "Ð’Ñ‹Ð±ÐµÑ€Ð¸Ñ‚Ðµ Ð¾Ð¿Ñ†Ð¸ÑŽ: " << endl;
+	cout << "1. Ð¡Ñ‚Ð°Ð½Ð´Ð°Ñ€Ñ‚Ð½Ñ‹Ðµ Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ñ‹ ÑÐ¼ÐµÑÐ¸ Ñ€Ð°ÑÐ¿Ñ€ÐµÐ´ÐµÐ»ÐµÐ½Ð¸Ð¹" << endl;
+	cout << "2. Ð’Ð²Ð¾Ð´ Ñ ÐºÐ»Ð°Ð²Ð¸Ð°Ñ‚ÑƒÑ€Ñ‹" << endl;
+	cout << "3. Ð’Ð²Ð¾Ð´ Ð¸Ð· Ñ„Ð°Ð¹Ð»Ð°" << endl;
+	cout << "4. ÐÐ°Ð·Ð°Ð´" << endl << endl;
 
 	cin >> option;
 	cout << endl << endl;
@@ -466,9 +466,9 @@ void step2_empirical_from_mixture()
 	case '1':
 		MX = new Mixture();
 
-		cout << "Ââåäèòå n: ";
+		cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ n: ";
 		cin >> n;
-		cout << "Ââåäèòå k (0, åñëè õîòèòå ðàññ÷èòàòü k ïî ôîðìóëå Ñòåðäæåññà): ";
+		cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ k (0, ÐµÑÐ»Ð¸ Ñ…Ð¾Ñ‚Ð¸Ñ‚Ðµ Ñ€Ð°ÑÑÑ‡Ð¸Ñ‚Ð°Ñ‚ÑŒ k Ð¿Ð¾ Ñ„Ð¾Ñ€Ð¼ÑƒÐ»Ðµ Ð¡Ñ‚ÐµÑ€Ð´Ð¶ÐµÑÑÐ°): ";
 		cin >> k;
 		cout << endl << endl;
 
@@ -478,7 +478,7 @@ void step2_empirical_from_mixture()
 		break;
 
 	case '2':
-		cout << "Ââåäèòå p (v1 scale1 shift1) (v2 scale2 shift2) (÷åðåç ïðîáåë èëè ÷åðåç Enter): ";
+		cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ p (v1 scale1 shift1) (v2 scale2 shift2) (Ñ‡ÐµÑ€ÐµÐ· Ð¿Ñ€Ð¾Ð±ÐµÐ» Ð¸Ð»Ð¸ Ñ‡ÐµÑ€ÐµÐ· Enter): ";
 		cin >> p >> v1 >> scale1 >> shift1 >> v2 >> scale2 >> shift2;
 		try
 		{
@@ -491,9 +491,9 @@ void step2_empirical_from_mixture()
 			cerr << e.what() << endl << endl;
 			break;
 		}
-		cout << "Ââåäèòå n: ";
+		cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ n: ";
 		cin >> n;
-		cout << "Ââåäèòå k (0, åñëè õîòèòå ðàññ÷èòàòü k ïî ôîðìóëå Ñòåðäæåññà): ";
+		cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ k (0, ÐµÑÐ»Ð¸ Ñ…Ð¾Ñ‚Ð¸Ñ‚Ðµ Ñ€Ð°ÑÑÑ‡Ð¸Ñ‚Ð°Ñ‚ÑŒ k Ð¿Ð¾ Ñ„Ð¾Ñ€Ð¼ÑƒÐ»Ðµ Ð¡Ñ‚ÐµÑ€Ð´Ð¶ÐµÑÑÐ°): ";
 		cin >> k;
 		cout << endl << endl;
 
@@ -512,9 +512,9 @@ void step2_empirical_from_mixture()
 			break;
 		}
 
-		cout << "Ââåäèòå n: ";
+		cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ n: ";
 		cin >> n;
-		cout << "Ââåäèòå k (0, åñëè õîòèòå ðàññ÷èòàòü k ïî ôîðìóëå Ñòåðäæåññà): ";
+		cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ k (0, ÐµÑÐ»Ð¸ Ñ…Ð¾Ñ‚Ð¸Ñ‚Ðµ Ñ€Ð°ÑÑÑ‡Ð¸Ñ‚Ð°Ñ‚ÑŒ k Ð¿Ð¾ Ñ„Ð¾Ñ€Ð¼ÑƒÐ»Ðµ Ð¡Ñ‚ÐµÑ€Ð´Ð¶ÐµÑÑÐ°): ";
 		cin >> k;
 		cout << endl << endl;
 
@@ -527,7 +527,7 @@ void step2_empirical_from_mixture()
 		break;
 
 	default:
-		cerr << endl << "Îøèáêà: Íåêîððåêòíûé ïàðàìåòð" << endl << endl;
+		cerr << endl << "ÐžÑˆÐ¸Ð±ÐºÐ°: ÐÐµÐºÐ¾Ñ€Ñ€ÐµÐºÑ‚Ð½Ñ‹Ð¹ Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€" << endl << endl;
 		break;
 	}
 }
@@ -540,8 +540,8 @@ void step2_empirical_from_empirical()
 	string filename;
 	int n, k;
 
-	cout << "1. Ââåñòè ïàðàìåòðû ðàñïðåäåëåíèÿ èç ôàéëà" << endl;
-	cout << "2. Íàçàä" << endl << endl;
+	cout << "1. Ð’Ð²ÐµÑÑ‚Ð¸ Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ñ‹ Ñ€Ð°ÑÐ¿Ñ€ÐµÐ´ÐµÐ»ÐµÐ½Ð¸Ñ Ð¸Ð· Ñ„Ð°Ð¹Ð»Ð°" << endl;
+	cout << "2. ÐÐ°Ð·Ð°Ð´" << endl << endl;
 
 	cin >> option;
 	cout << endl << endl;
@@ -549,14 +549,14 @@ void step2_empirical_from_empirical()
 	switch(option)
 	{
 	case '1':
-		cout << "Ââåäèòå èìÿ ôàéëà ñ ïàðàìåòðàìè ðàñïðåäåëåíèÿ: ";
+		cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð¸Ð¼Ñ Ñ„Ð°Ð¹Ð»Ð° Ñ Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ð°Ð¼Ð¸ Ñ€Ð°ÑÐ¿Ñ€ÐµÐ´ÐµÐ»ÐµÐ½Ð¸Ñ: ";
 		cin >> filename;
 		cout << endl << endl;
 
 		file.open(filename);
 
 		if (!file)
-			throw runtime_error("Îøèáêà: íå óäàëîñü îòêðûòü ôàéë");
+			throw runtime_error("ÐžÑˆÐ¸Ð±ÐºÐ°: Ð½Ðµ ÑƒÐ´Ð°Ð»Ð¾ÑÑŒ Ð¾Ñ‚ÐºÑ€Ñ‹Ñ‚ÑŒ Ñ„Ð°Ð¹Ð»");
 
 		while(!file.eof())
 			file >> n >> k;
@@ -581,7 +581,7 @@ void step2_empirical_from_empirical()
 		break;
 
 	default:
-		cerr << endl << "Îøèáêà: Íåêîððåêòíûé ïàðàìåòð" << endl << endl;
+		cerr << endl << "ÐžÑˆÐ¸Ð±ÐºÐ°: ÐÐµÐºÐ¾Ñ€Ñ€ÐµÐºÑ‚Ð½Ñ‹Ð¹ Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€" << endl << endl;
 		break;
 
 	}
@@ -596,8 +596,8 @@ void step2_empirical_from_sequence()
 	double x;
 	vector<double> x_s;
 
-	cout << "1. Ââåñòè âûáîðêó ýëåìåíòîâ èç ôàéëà" << endl;
-	cout << "2. Íàçàä" << endl << endl;
+	cout << "1. Ð’Ð²ÐµÑÑ‚Ð¸ Ð²Ñ‹Ð±Ð¾Ñ€ÐºÑƒ ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚Ð¾Ð² Ð¸Ð· Ñ„Ð°Ð¹Ð»Ð°" << endl;
+	cout << "2. ÐÐ°Ð·Ð°Ð´" << endl << endl;
 
 	cin >> option;
 	cout << endl;
@@ -605,14 +605,14 @@ void step2_empirical_from_sequence()
 	switch (option)
 	{
 	case '1':
-		cout << "Ââåäèòå èìÿ ôàéëà ñ ïàðàìåòðàìè ðàñïðåäåëåíèÿ: ";
+		cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð¸Ð¼Ñ Ñ„Ð°Ð¹Ð»Ð° Ñ Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ð°Ð¼Ð¸ Ñ€Ð°ÑÐ¿Ñ€ÐµÐ´ÐµÐ»ÐµÐ½Ð¸Ñ: ";
 		cin >> filename;
 		cout << endl << endl;
 
 		file.open(filename);
 
 		if (!file)
-			throw runtime_error("Îøèáêà: íå óäàëîñü îòêðûòü ôàéë");
+			throw runtime_error("ÐžÑˆÐ¸Ð±ÐºÐ°: Ð½Ðµ ÑƒÐ´Ð°Ð»Ð¾ÑÑŒ Ð¾Ñ‚ÐºÑ€Ñ‹Ñ‚ÑŒ Ñ„Ð°Ð¹Ð»");
 
 		while (!file.eof())
 		{
@@ -641,7 +641,7 @@ void step2_empirical_from_sequence()
 		break;
 
 	default:
-		cerr << endl << "Îøèáêà: Íåêîððåêòíûé ïàðàìåòð" << endl << endl;
+		cerr << endl << "ÐžÑˆÐ¸Ð±ÐºÐ°: ÐÐµÐºÐ¾Ñ€Ñ€ÐµÐºÑ‚Ð½Ñ‹Ð¹ Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€" << endl << endl;
 		break;
 		
 	}
@@ -655,14 +655,14 @@ void step2_empirical()
 	int n, k;
 	char option;
 
-	cout << "Îòêóäà áåðåì ïàðàìåòðû äëÿ ýìïèðè÷åñêîãî ðàñïðåäåëåíèÿ?" << endl;
-	cout << "1. Îñíîâíîå ðàñïðåäåëåíèå" << endl;
-	cout << "2. Ñìåñü ðàñïðåäåëåíèé" << endl;
-	cout << "3. Íà áàçå ñóùåñòâóþùåãî ýìïèðè÷åñêîãî ðàñïðåäåëåíèÿ" << endl;
-	cout << "4. Íà áàçå ñóùåñòâóþùåé âûáîðêè ýëåìåíòîâ ñëó÷àéíîé âåëè÷èíû" << endl;
-	cout << "5. Ñîáñòâåííûå ïàðàìåòðû" << endl;
-	cout << "6. Ââåñòè ïàðàìåòðû èç ôàéëà" << endl;
-	cout << "7. Íàçàä" << endl << endl;
+	cout << "ÐžÑ‚ÐºÑƒÐ´Ð° Ð±ÐµÑ€ÐµÐ¼ Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ñ‹ Ð´Ð»Ñ ÑÐ¼Ð¿Ð¸Ñ€Ð¸Ñ‡ÐµÑÐºÐ¾Ð³Ð¾ Ñ€Ð°ÑÐ¿Ñ€ÐµÐ´ÐµÐ»ÐµÐ½Ð¸Ñ?" << endl;
+	cout << "1. ÐžÑÐ½Ð¾Ð²Ð½Ð¾Ðµ Ñ€Ð°ÑÐ¿Ñ€ÐµÐ´ÐµÐ»ÐµÐ½Ð¸Ðµ" << endl;
+	cout << "2. Ð¡Ð¼ÐµÑÑŒ Ñ€Ð°ÑÐ¿Ñ€ÐµÐ´ÐµÐ»ÐµÐ½Ð¸Ð¹" << endl;
+	cout << "3. ÐÐ° Ð±Ð°Ð·Ðµ ÑÑƒÑ‰ÐµÑÑ‚Ð²ÑƒÑŽÑ‰ÐµÐ³Ð¾ ÑÐ¼Ð¿Ð¸Ñ€Ð¸Ñ‡ÐµÑÐºÐ¾Ð³Ð¾ Ñ€Ð°ÑÐ¿Ñ€ÐµÐ´ÐµÐ»ÐµÐ½Ð¸Ñ" << endl;
+	cout << "4. ÐÐ° Ð±Ð°Ð·Ðµ ÑÑƒÑ‰ÐµÑÑ‚Ð²ÑƒÑŽÑ‰ÐµÐ¹ Ð²Ñ‹Ð±Ð¾Ñ€ÐºÐ¸ ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚Ð¾Ð² ÑÐ»ÑƒÑ‡Ð°Ð¹Ð½Ð¾Ð¹ Ð²ÐµÐ»Ð¸Ñ‡Ð¸Ð½Ñ‹" << endl;
+	cout << "5. Ð¡Ð¾Ð±ÑÑ‚Ð²ÐµÐ½Ð½Ñ‹Ðµ Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ñ‹" << endl;
+	cout << "6. Ð’Ð²ÐµÑÑ‚Ð¸ Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ñ‹ Ð¸Ð· Ñ„Ð°Ð¹Ð»Ð°" << endl;
+	cout << "7. ÐÐ°Ð·Ð°Ð´" << endl << endl;
 
 	cin >> option;
 	cout << endl;
@@ -686,9 +686,9 @@ void step2_empirical()
 		break;
 
 	case '5':
-		cout << "Ââåäèòå n: ";
+		cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ n: ";
 		cin >> n;
-		cout << "Ââåäèòå k (0, åñëè õîòèòå ðàññ÷èòàòü k ïî ôîðìóëå Ñòåðäæåññà): ";
+		cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ k (0, ÐµÑÐ»Ð¸ Ñ…Ð¾Ñ‚Ð¸Ñ‚Ðµ Ñ€Ð°ÑÑÑ‡Ð¸Ñ‚Ð°Ñ‚ÑŒ k Ð¿Ð¾ Ñ„Ð¾Ñ€Ð¼ÑƒÐ»Ðµ Ð¡Ñ‚ÐµÑ€Ð´Ð¶ÐµÑÑÐ°): ";
 		cin >> k;
 		cout << endl << endl;
 
@@ -712,7 +712,7 @@ void step2_empirical()
 		break;
 
 	default:
-		cerr << endl << "Îøèáêà: Íåêîððåêòíûé ïàðàìåòð" << endl << endl;
+		cerr << endl << "ÐžÑˆÐ¸Ð±ÐºÐ°: ÐÐµÐºÐ¾Ñ€Ñ€ÐµÐºÑ‚Ð½Ñ‹Ð¹ Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€" << endl << endl;
 		break;
 	}
 }
@@ -721,11 +721,11 @@ void step1()
 {
 	char option;
 
-	cout << "Ðàñïðåäåëåíèå: " << endl;
-	cout << "1. Îñíîâíîå ðàñïðåäåëåíèå" << endl;
-	cout << "2. Ñìåñü ðàñïðåäåëåíèé" << endl;
-	cout << "3. Ýìïèðè÷åñêîå ðàñïðåäåëåíèå" << endl;
-	cout << "4. Âûõîä" << endl << endl;
+	cout << "Ð Ð°ÑÐ¿Ñ€ÐµÐ´ÐµÐ»ÐµÐ½Ð¸Ðµ: " << endl;
+	cout << "1. ÐžÑÐ½Ð¾Ð²Ð½Ð¾Ðµ Ñ€Ð°ÑÐ¿Ñ€ÐµÐ´ÐµÐ»ÐµÐ½Ð¸Ðµ" << endl;
+	cout << "2. Ð¡Ð¼ÐµÑÑŒ Ñ€Ð°ÑÐ¿Ñ€ÐµÐ´ÐµÐ»ÐµÐ½Ð¸Ð¹" << endl;
+	cout << "3. Ð­Ð¼Ð¿Ð¸Ñ€Ð¸Ñ‡ÐµÑÐºÐ¾Ðµ Ñ€Ð°ÑÐ¿Ñ€ÐµÐ´ÐµÐ»ÐµÐ½Ð¸Ðµ" << endl;
+	cout << "4. Ð’Ñ‹Ñ…Ð¾Ð´" << endl << endl;
 
 	cin >> option;
 	cout << endl << endl;
@@ -745,11 +745,11 @@ void step1()
 		break;
 
 	case '4':
-		cout << "Çàâåðøåíèå ðàáîòû" << endl << endl;
+		cout << "Ð—Ð°Ð²ÐµÑ€ÑˆÐµÐ½Ð¸Ðµ Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹" << endl << endl;
 		exit(0);
 
 	default:
-		cerr << endl << "Îøèáêà: Íåêîððåêòíûé ïàðàìåòð" << endl << endl;
+		cerr << endl << "ÐžÑˆÐ¸Ð±ÐºÐ°: ÐÐµÐºÐ¾Ñ€Ñ€ÐµÐºÑ‚Ð½Ñ‹Ð¹ Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€" << endl << endl;
 		break;
 	}
 }

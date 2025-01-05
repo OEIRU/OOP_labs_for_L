@@ -7,24 +7,24 @@ Mixture::Mixture() : p(0.5)
 }
 
 Mixture::Mixture(Primary* _HB1, Primary* _HB2, double _p) :
-	HB1(_HB1), HB2(_HB2), p(_p > 0 and _p < 1 ? _p : throw invalid_argument("Îøèáêà: îäèí èëè íåñêîëüêî ïàðàìåòðîâ íåêîððåêòíû") ) {}
+	HB1(_HB1), HB2(_HB2), p(_p > 0 and _p < 1 ? _p : throw invalid_argument("ÐžÑˆÐ¸Ð±ÐºÐ°: Ð¾Ð´Ð¸Ð½ Ð¸Ð»Ð¸ Ð½ÐµÑÐºÐ¾Ð»ÑŒÐºÐ¾ Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ð¾Ð² Ð½ÐµÐºÐ¾Ñ€Ñ€ÐµÐºÑ‚Ð½Ñ‹") ) {}
 
 Mixture::Mixture(ifstream& file)
 {
 	double v1, scale1, shift1, v2, scale2, shift2, p;
 	string filename;
-	cout << "Ââåäèòå èìÿ ôàéëà: ";
+	cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð¸Ð¼Ñ Ñ„Ð°Ð¹Ð»Ð°: ";
 	cin >> filename;
 	file.open(filename);
 
 	if (!file) 
-		throw runtime_error("Îøèáêà: íå óäàëîñü îòêðûòü ôàéë");
+		throw runtime_error("ÐžÑˆÐ¸Ð±ÐºÐ°: Ð½Ðµ ÑƒÐ´Ð°Ð»Ð¾ÑÑŒ Ð¾Ñ‚ÐºÑ€Ñ‹Ñ‚ÑŒ Ñ„Ð°Ð¹Ð»");
 
 	file >> p >> v1 >> scale1 >> shift1 >> v2 >> scale2 >> shift2;
 	file.close();
 
 	if (p > 1 || p < 0 || v1 <= 0 || v2 <= 0 || scale1 <= 0 || scale2 <= 0)
-		throw invalid_argument("Îøèáêà: îäèí èëè íåñêîëüêî ïàðàìåòðîâ íå êîððåêòíû");
+		throw invalid_argument("ÐžÑˆÐ¸Ð±ÐºÐ°: Ð¾Ð´Ð¸Ð½ Ð¸Ð»Ð¸ Ð½ÐµÑÐºÐ¾Ð»ÑŒÐºÐ¾ Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ð¾Ð² Ð½Ðµ ÐºÐ¾Ñ€Ñ€ÐµÐºÑ‚Ð½Ñ‹");
 
 	HB1 = new Primary(v1, scale1, shift1);
 	HB2 = new Primary(v2, scale2, shift2);
@@ -50,7 +50,7 @@ double Mixture::get_p() const
 void Mixture::set_p(const double p)
 {
 	if (p > 1 || p < 0)
-		throw invalid_argument("Îøèáêà: îäèí ïàðàìåòðî íåêîððåêòåí");
+		throw invalid_argument("ÐžÑˆÐ¸Ð±ÐºÐ°: Ð¾Ð´Ð¸Ð½ Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ð¾ Ð½ÐµÐºÐ¾Ñ€Ñ€ÐµÐºÑ‚ÐµÐ½");
 
 	this->p = p;
 }
@@ -58,14 +58,14 @@ void Mixture::set_p(const double p)
 void Mixture::save_to_file(ofstream& file)
 {
 	string filename;
-	cout << "Ââåäèòå èìÿ âûõîäíîãî ôàéëà: ";
+	cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð¸Ð¼Ñ Ð²Ñ‹Ñ…Ð¾Ð´Ð½Ð¾Ð³Ð¾ Ñ„Ð°Ð¹Ð»Ð°: ";
 	cin >> filename;
 	file.open(filename);
 
 	file << p << endl << HB1->get_v() << endl << HB1->get_scale() << endl << HB1->get_shift() << endl << HB2->get_v() << endl << HB2->get_scale() << endl << HB2->get_shift();
 	file.close();
 
-	cout << endl << "Ïàðàìåòðû ðàñïðåäåëåíèÿ ñîõðàíåíû â ôàéë " + filename << endl;
+	cout << endl << "ÐŸÐ°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ñ‹ Ñ€Ð°ÑÐ¿Ñ€ÐµÐ´ÐµÐ»ÐµÐ½Ð¸Ñ ÑÐ¾Ñ…Ñ€Ð°Ð½ÐµÐ½Ñ‹ Ð² Ñ„Ð°Ð¹Ð» " + filename << endl;
 }
 
 double Mixture::f(const double x) const

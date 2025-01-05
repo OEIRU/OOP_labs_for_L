@@ -1,24 +1,24 @@
 #include "Empirical.h"
 
 Empirical::Empirical(const Primary* HB, int _n, int _k) :
-	n(_n > 1 ? _n : throw invalid_argument("Некорректный аргумент")), k(_k > 2 ? _k : (int)floor(log2(_n)) + 1)
+	n(_n > 1 ? _n : throw invalid_argument("РќРµРєРѕСЂСЂРµРєС‚РЅС‹Р№ Р°СЂРіСѓРјРµРЅС‚")), k(_k > 2 ? _k : (int)floor(log2(_n)) + 1)
 {
 	x_s = HB->generate_sequence(_n);
 	f_s = generate_f_s();
 }
 
-Empirical::Empirical(const Mixture* MX, int _n, int _k) : n(_n > 1 ? _n : throw invalid_argument("Некорректный аргумент")), k(_k > 2 ? _k : (int)floor(log2(_n)) + 1)
+Empirical::Empirical(const Mixture* MX, int _n, int _k) : n(_n > 1 ? _n : throw invalid_argument("РќРµРєРѕСЂСЂРµРєС‚РЅС‹Р№ Р°СЂРіСѓРјРµРЅС‚")), k(_k > 2 ? _k : (int)floor(log2(_n)) + 1)
 {
 	x_s = MX->generate_sequence(_n);
 	f_s = generate_f_s();
 }
 
-Empirical::Empirical(const Empirical* EM) : n(EM->n > 1 ? EM->n : throw invalid_argument("Некорректный аргумент")), k(EM->k > 2 ? EM->k : (int)floor(log2(EM->n) + 1)), x_s(EM->x_s), f_s(EM->f_s)
+Empirical::Empirical(const Empirical* EM) : n(EM->n > 1 ? EM->n : throw invalid_argument("РќРµРєРѕСЂСЂРµРєС‚РЅС‹Р№ Р°СЂРіСѓРјРµРЅС‚")), k(EM->k > 2 ? EM->k : (int)floor(log2(EM->n) + 1)), x_s(EM->x_s), f_s(EM->f_s)
 {
 	f_s = generate_f_s();
 }
 
-Empirical::Empirical(const int _n, const int _k) : n(_n > 1 ? _n : throw invalid_argument("Некорректный аргумент")), k(_k > 2 ? _k : (int)floor(log2(_n) + 1))
+Empirical::Empirical(const int _n, const int _k) : n(_n > 1 ? _n : throw invalid_argument("РќРµРєРѕСЂСЂРµРєС‚РЅС‹Р№ Р°СЂРіСѓРјРµРЅС‚")), k(_k > 2 ? _k : (int)floor(log2(_n) + 1))
 {
 	x_s = generate_x_s();
 	f_s = generate_f_s();
@@ -34,12 +34,12 @@ Empirical::Empirical(ifstream& file)
 {
 	string filename;
 
-	cout << "Введите имя файла: ";
+	cout << "Р’РІРµРґРёС‚Рµ РёРјСЏ С„Р°Р№Р»Р°: ";
 	cin >> filename;
 
 	file.open(filename);
 	if (!file) 
-		throw runtime_error("Ошибка: не удалось открыть файл");
+		throw runtime_error("РћС€РёР±РєР°: РЅРµ СѓРґР°Р»РѕСЃСЊ РѕС‚РєСЂС‹С‚СЊ С„Р°Р№Р»");
 
 	double x;
 	while (!file.eof())
@@ -176,9 +176,9 @@ void Empirical::save_to_file(ofstream& file)
 	file_y_s.close();
 	params.close();
 
-	cout << "Выборка сохранена в файл x_s.txt" << endl;
-	cout << "Значения плотности сохранены в f_s.txt" << endl;
-	cout << "Параметры распределения сохранены в файл params.txt" << endl << endl;
+	cout << "Р’С‹Р±РѕСЂРєР° СЃРѕС…СЂР°РЅРµРЅР° РІ С„Р°Р№Р» x_s.txt" << endl;
+	cout << "Р—РЅР°С‡РµРЅРёСЏ РїР»РѕС‚РЅРѕСЃС‚Рё СЃРѕС…СЂР°РЅРµРЅС‹ РІ f_s.txt" << endl;
+	cout << "РџР°СЂР°РјРµС‚СЂС‹ СЂР°СЃРїСЂРµРґРµР»РµРЅРёСЏ СЃРѕС…СЂР°РЅРµРЅС‹ РІ С„Р°Р№Р» params.txt" << endl << endl;
 }
 
 double Empirical::f(const double x) const
