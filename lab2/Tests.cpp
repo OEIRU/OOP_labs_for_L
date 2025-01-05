@@ -1,134 +1,171 @@
-#include "catch.hpp"
+#include <cassert>
+#include <iostream>
+#include <fstream>
+#include <stdexcept>
 #include "Primary.h"
 
-TEST_CASE("standard distribution") {
-
+void test_standard_distribution() {
     double v = 0.5;
     Primary* HB = new Primary(v);
-    REQUIRE(HB->get_v() == 0.5);
-    REQUIRE(HB->get_k() == HB->K(v));
-    REQUIRE(HB->get_scale() == 1.);
-    REQUIRE(HB->get_shift() == 0.);
-    REQUIRE(HB->f(0) == Approx(0.223).epsilon(0.01));
-    REQUIRE(HB->P() == Approx(0.214).epsilon(0.01));
-    REQUIRE(HB->expected_value() == HB->get_shift());
-    REQUIRE(HB->variance() == Approx(8.08).epsilon(0.01));
-    REQUIRE(HB->asymmetry() == 0.);
-    REQUIRE(HB->kurtosis() == Approx(2.94).epsilon(0.01));
+    assert(HB->get_v() == 0.5);
+    assert(HB->get_k() == HB->K(v));
+    assert(HB->get_scale() == 1.);
+    assert(HB->get_shift() == 0.);
+    assert(std::abs(HB->f(0) - 0.223) < 0.01);
+    assert(std::abs(HB->P() - 0.214) < 0.01);
+    assert(HB->expected_value() == HB->get_shift());
+    assert(std::abs(HB->variance() - 8.08) < 0.01);
+    assert(HB->asymmetry() == 0.);
+    assert(std::abs(HB->kurtosis() - 2.94) < 0.01);
 
     v = 0.75;
     HB->set_v(v);
-    REQUIRE(HB->get_v() == 0.75);
-    REQUIRE(HB->get_k() == HB->K(v));
-    REQUIRE(HB->get_scale() == 1.);
-    REQUIRE(HB->get_shift() == 0.);
-    REQUIRE(HB->f(0) == Approx(0.296).epsilon(0.01));
-    REQUIRE(HB->P() == Approx(0.405).epsilon(0.01));
-    REQUIRE(HB->expected_value() == HB->get_shift());
-    REQUIRE(HB->variance() == Approx(3.71).epsilon(0.01));
-    REQUIRE(HB->asymmetry() == 0.);
-    REQUIRE(HB->kurtosis() == Approx(2.75).epsilon(0.01));
+    assert(HB->get_v() == 0.75);
+    assert(HB->get_k() == HB->K(v));
+    assert(HB->get_scale() == 1.);
+    assert(HB->get_shift() == 0.);
+    assert(std::abs(HB->f(0) - 0.296) < 0.01);
+    assert(std::abs(HB->P() - 0.405) < 0.01);
+    assert(HB->expected_value() == HB->get_shift());
+    assert(std::abs(HB->variance() - 3.71) < 0.01);
+    assert(HB->asymmetry() == 0.);
+    assert(std::abs(HB->kurtosis() - 2.75) < 0.01);
 
     v = 1;
     HB->set_v(v);
-    REQUIRE(HB->get_v() == 1.);
-    REQUIRE(HB->get_k() == HB->K(v));
-    REQUIRE(HB->get_scale() == 1.);
-    REQUIRE(HB->get_shift() == 0.);
-    REQUIRE(HB->f(0) == Approx(0.342).epsilon(0.01));
-    REQUIRE(HB->P() == Approx(0.585).epsilon(0.01));
-    REQUIRE(HB->expected_value() == HB->get_shift());
-    REQUIRE(HB->variance() == Approx(2.24).epsilon(0.01));
-    REQUIRE(HB->asymmetry() == 0.);
-    REQUIRE(HB->kurtosis() == Approx(2.37).epsilon(0.01));
+    assert(HB->get_v() == 1.);
+    assert(HB->get_k() == HB->K(v));
+    assert(HB->get_scale() == 1.);
+    assert(HB->get_shift() == 0.);
+    assert(std::abs(HB->f(0) - 0.342) < 0.01);
+    assert(std::abs(HB->P() - 0.585) < 0.01);
+    assert(HB->expected_value() == HB->get_shift());
+    assert(std::abs(HB->variance() - 2.24) < 0.01);
+    assert(HB->asymmetry() == 0.);
+    assert(std::abs(HB->kurtosis() - 2.37) < 0.01);
 
     v = 1.5;
     HB->set_v(v);
-    REQUIRE(HB->get_v() == 1.5);
-    REQUIRE(HB->get_k() == HB->K(v));
-    REQUIRE(HB->get_scale() == 1.);
-    REQUIRE(HB->get_shift() == 0.);
-    REQUIRE(HB->f(0) == Approx(0.384).epsilon(0.01));
-    REQUIRE(HB->P() == Approx(0.834).epsilon(0.01));
-    REQUIRE(HB->expected_value() == HB->get_shift());
-    REQUIRE(HB->variance() == Approx(1.31).epsilon(0.01));
-    REQUIRE(HB->asymmetry() == 0.);
-    REQUIRE(HB->kurtosis() == Approx(1.30).epsilon(0.01));
+    assert(HB->get_v() == 1.5);
+    assert(HB->get_k() == HB->K(v));
+    assert(HB->get_scale() == 1.);
+    assert(HB->get_shift() == 0.);
+    assert(std::abs(HB->f(0) - 0.384) < 0.01);
+    assert(std::abs(HB->P() - 0.834) < 0.01);
+    assert(HB->expected_value() == HB->get_shift());
+    assert(std::abs(HB->variance() - 1.31) < 0.01);
+    assert(HB->asymmetry() == 0.);
+    assert(std::abs(HB->kurtosis() - 1.30) < 0.01);
 
     v = 2;
     HB->set_v(v);
-    REQUIRE(HB->get_v() == 2.);
-    REQUIRE(HB->get_k() == HB->K(v));
-    REQUIRE(HB->get_scale() == 1.);
-    REQUIRE(HB->get_shift() == 0.);
-    REQUIRE(HB->f(0) == Approx(0.396).epsilon(0.01));
-    REQUIRE(HB->P() == Approx(0.946).epsilon(0.01));
-    REQUIRE(HB->expected_value() == HB->get_shift());
-    REQUIRE(HB->variance() == Approx(1.08).epsilon(0.01));
-    REQUIRE(HB->asymmetry() == 0.);
-    REQUIRE(HB->kurtosis() == Approx(0.51).epsilon(0.01));
+    assert(HB->get_v() == 2.);
+    assert(HB->get_k() == HB->K(v));
+    assert(HB->get_scale() == 1.);
+    assert(HB->get_shift() == 0.);
+    assert(std::abs(HB->f(0) - 0.396) < 0.01);
+    assert(std::abs(HB->P() - 0.946) < 0.01);
+    assert(HB->expected_value() == HB->get_shift());
+    assert(std::abs(HB->variance() - 1.08) < 0.01);
+    assert(HB->asymmetry() == 0.);
+    assert(std::abs(HB->kurtosis() - 0.51) < 0.01);
 
     v = 2.5;
     HB->set_v(v);
-    REQUIRE(HB->get_v() == 2.5);
-    REQUIRE(HB->get_k() == HB->K(v));
-    REQUIRE(HB->get_scale() == 1.);
-    REQUIRE(HB->get_shift() == 0.);
-    REQUIRE(HB->f(0) == Approx(0.398).epsilon(0.01));
-    REQUIRE(HB->P() == Approx(0.986).epsilon(0.01));
-    REQUIRE(HB->expected_value() == HB->get_shift());
-    REQUIRE(HB->variance() == Approx(1.02).epsilon(0.01));
-    REQUIRE(HB->asymmetry() == 0.);
-    REQUIRE(HB->kurtosis() == Approx(0.16).epsilon(0.1));
+    assert(HB->get_v() == 2.5);
+    assert(HB->get_k() == HB->K(v));
+    assert(HB->get_scale() == 1.);
+    assert(HB->get_shift() == 0.);
+    assert(std::abs(HB->f(0) - 0.398) < 0.01);
+    assert(std::abs(HB->P() - 0.986) < 0.01);
+    assert(HB->expected_value() == HB->get_shift());
+    assert(std::abs(HB->variance() - 1.02) < 0.01);
+    assert(HB->asymmetry() == 0.);
+    assert(std::abs(HB->kurtosis() - 0.16) < 0.1);
 
     v = 3;
     HB->set_v(v);
-    REQUIRE(HB->get_v() == 3.);
-    REQUIRE(HB->get_k() == HB->K(v));
-    REQUIRE(HB->get_scale() == 1.);
-    REQUIRE(HB->get_shift() == 0.);
-    REQUIRE(HB->f(0) == Approx(0.399).epsilon(0.01));
-    REQUIRE(HB->P() == Approx(0.997).epsilon(0.01));
-    REQUIRE(HB->expected_value() == HB->get_shift());
-    REQUIRE(HB->variance() == Approx(1.00).epsilon(0.01));
-    REQUIRE(HB->asymmetry() == 0.);
-    REQUIRE(HB->kurtosis() == Approx(0.04).epsilon(0.01));
+    assert(HB->get_v() == 3.);
+    assert(HB->get_k() == HB->K(v));
+    assert(HB->get_scale() == 1.);
+    assert(HB->get_shift() == 0.);
+    assert(std::abs(HB->f(0) - 0.399) < 0.01);
+    assert(std::abs(HB->P() - 0.997) < 0.01);
+    assert(HB->expected_value() == HB->get_shift());
+    assert(std::abs(HB->variance() - 1.00) < 0.01);
+    assert(HB->asymmetry() == 0.);
+    assert(std::abs(HB->kurtosis() - 0.04) < 0.01);
+
+    delete HB;
+    std::cout << "test_standard_distribution passed." << std::endl;
 }
 
-
-TEST_CASE("Scaled and shifted distribution") {
-
+void test_scaled_and_shifted_distribution() {
     double v = 1.5;
     double scale = 2;
     double shift = 5;
     Primary* HB = new Primary(v, scale, shift);
-    REQUIRE(HB->get_v() == 1.5);
-    REQUIRE(HB->get_scale() == 2.);
-    REQUIRE(HB->get_shift() == 5.);
-    REQUIRE(HB->expected_value() == HB->get_shift());
-    REQUIRE(HB->variance() == Approx(1.31).epsilon(0.01));
-    REQUIRE(HB->asymmetry() == 0.);
-    REQUIRE(HB->kurtosis() == Approx(1.30).epsilon(0.01));
+    assert(HB->get_v() == 1.5);
+    assert(HB->get_scale() == 2.);
+    assert(HB->get_shift() == 5.);
+    assert(HB->expected_value() == HB->get_shift());
+    assert(std::abs(HB->variance() - 1.31) < 0.01);
+    assert(HB->asymmetry() == 0.);
+    assert(std::abs(HB->kurtosis() - 1.30) < 0.01);
 
-	v = 3.;
+    v = 3.;
     scale = 0.5;
     shift = 1;
     HB->set_v(v);
     HB->set_scale(scale);
     HB->set_shift(shift);
-    REQUIRE(HB->get_v() == 3.);
-    REQUIRE(HB->get_scale() == 0.5);
-    REQUIRE(HB->get_shift() == 1.);
-    REQUIRE(HB->expected_value() == HB->get_shift());
-    REQUIRE(HB->variance() == Approx(1.00).epsilon(0.01));
-    REQUIRE(HB->asymmetry() == 0.);
-    REQUIRE(HB->kurtosis() == Approx(0.04).epsilon(0.01));
+    assert(HB->get_v() == 3.);
+    assert(HB->get_scale() == 0.5);
+    assert(HB->get_shift() == 1.);
+    assert(HB->expected_value() == HB->get_shift());
+    assert(std::abs(HB->variance() - 1.00) < 0.01);
+    assert(HB->asymmetry() == 0.);
+    assert(std::abs(HB->kurtosis() - 0.04) < 0.01);
+
+    delete HB;
+    std::cout << "test_scaled_and_shifted_distribution passed." << std::endl;
 }
 
-TEST_CASE("Error processing")
-{
-    ifstream file;
-    REQUIRE_THROWS_AS(new Primary(-1), invalid_argument);
-    REQUIRE_THROWS_AS(new Primary(5, 0, 0), invalid_argument);
-    REQUIRE_THROWS_AS(new Primary(file), runtime_error);
+void test_error_processing() {
+    std::ifstream file;
+    bool exceptionThrown = false;
+
+    try {
+        new Primary(-1);
+    } catch (const std::invalid_argument&) {
+        exceptionThrown = true;
+    }
+    assert(exceptionThrown);
+
+    exceptionThrown = false;
+    try {
+        new Primary(5, 0, 0);
+    } catch (const std::invalid_argument&) {
+        exceptionThrown = true;
+    }
+    assert(exceptionThrown);
+
+    exceptionThrown = false;
+    try {
+        new Primary(file);
+    } catch (const std::runtime_error&) {
+        exceptionThrown = true;
+    }
+    assert(exceptionThrown);
+
+    std::cout << "test_error_processing passed." << std::endl;
+}
+
+int main() {
+    test_standard_distribution();
+    test_scaled_and_shifted_distribution();
+    test_error_processing();
+
+    std::cout << "All tests passed." << std::endl;
+    return 0;
 }
