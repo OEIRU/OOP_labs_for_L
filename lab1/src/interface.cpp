@@ -62,7 +62,7 @@ void output_distribution_stats(int n, const vector<double>& x_s, HuberDistributi
 void handle_file_output(int n, const vector<double>& x_s, HuberDistribution* HB, bool is_mixture = false, Mixture* M = nullptr) {
     double min_x = *min_element(x_s.begin(), x_s.end());
     double max_x = *max_element(x_s.begin(), x_s.end());
-    vector<double> x_grid = create_uniform_grid(min_x, max_x, 50000);
+    vector<double> x_grid = create_uniform_grid(min_x, max_x, 1000);
 
     vector<double> theoretical_values, empirical_values;
     for (double x : x_grid) {
@@ -75,7 +75,7 @@ void handle_file_output(int n, const vector<double>& x_s, HuberDistribution* HB,
 
 // Function to work with the main distribution
 void general_distribution() {
-    int n = 50000;
+    int n = 1000;
     int distribution_params_option;
     int file_option;
     double v, scale, shift, x;
@@ -114,7 +114,7 @@ void general_distribution() {
 
 // Function to work with a mixture of distributions
 void mixture_distribution() {
-    int n = 50000;
+    int n = 1000;
     int file_option;
     double v1, scale1, shift1, v2, scale2, shift2, x, p;
     vector<double> x_s;

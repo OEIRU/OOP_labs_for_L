@@ -95,28 +95,13 @@ double empirical_huber(int n, double x, const vector<double>& x_s) {
 
     // Определяем количество интервалов
     int k = max(5, static_cast<int>(trunc(log2(static_cast<double>(n))) + 1));
-    cout << "Количество интервалов (k): " << k << endl;
 
     // Находим минимальное и максимальное значение в выборке
     double min_x = *min_element(x_s.begin(), x_s.end());
     double max_x = *max_element(x_s.begin(), x_s.end());
 
-    cout << "min_x = " << min_x << ", max_x = " << max_x << endl;
-
-    // Если все значения одинаковы
-    if (min_x == max_x) {
-        if (x == min_x) {
-            cout << "Все значения одинаковы, плотность в точке x = " << x << " равна 1.0" << endl;
-            return 1.0;
-        } else {
-            cout << "Все значения одинаковы, плотность не определена" << endl;
-            return 0.0;
-        }
-    }
-
     // Ширина интервала
     double delta = (max_x - min_x) / static_cast<double>(k);
-    cout << "Ширина интервала (delta): " << delta << endl;
 
     // Проверка, что x находится в пределах выборки
     if (x < min_x || x > max_x) {
@@ -143,7 +128,6 @@ double empirical_huber(int n, double x, const vector<double>& x_s) {
 
             // Вычисление плотности
             double density = static_cast<double>(n_i) / (n * delta);
-            cout << "Эмпирическая плотность в интервале: " << density << endl;
             return density;
         }
     }

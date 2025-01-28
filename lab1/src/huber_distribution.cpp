@@ -17,14 +17,7 @@ HuberDistribution* init_huber_distribution(double v, double K, double scale, dou
     return HB;
 }
 
-// Функция для отладки, записывающая информацию в файл
-void log_huber_debug(const string& message) {
-    ofstream log_file("huber_debug.log", ios_base::app);
-    if (log_file.is_open()) {
-        log_file << message << endl;
-        log_file.close();
-    }
-}
+
 
 // Функция Хубера с отладочной информацией
 double Huber(double x, HuberDistribution* HB) {
@@ -37,11 +30,9 @@ double Huber(double x, HuberDistribution* HB) {
 
     if (abs_diff <= HB->v) {
         double result = exp(-pow(abs_diff, 2.) / 2.);
-        log_huber_debug("Используется нормальное распределение с результатом: " + to_string(result));
         return result / (sqrt(2. * M_PI) * HB->K * HB->scale);
     } else {
         double result = exp(pow(HB->v, 2.) / 2. - HB->v * abs_diff);
-        log_huber_debug("Используется экспоненциальное распределение с результатом: " + to_string(result));
         return result / (sqrt(2. * M_PI) * HB->K * HB->scale);
     }
 }
