@@ -1,13 +1,16 @@
 # Компилятор и флаги
 CXX = g++
-CXXFLAGS = -std=c++17 -Wall -Wextra -I.
+CXXFLAGS = -std=c++17 -Wall -Wextra -Iinclude
+
+# Директории
+SRC_DIR = src
+OBJ_DIR = obj
+INCLUDE_DIR = include
 
 # Исходные файлы
-SRC_DIR = .
 SRC_FILES = $(SRC_DIR)/Interface.cpp $(SRC_DIR)/Primary.cpp $(SRC_DIR)/Main.cpp $(SRC_DIR)/Tests.cpp
 
 # Объектные файлы
-OBJ_DIR = obj
 OBJ_FILES = $(patsubst $(SRC_DIR)/%.cpp, $(OBJ_DIR)/%.o, $(SRC_FILES))
 
 # Исполняемые файлы
